@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pine
+  m_Name: Walnut
   m_Shader: {fileID: -6465566751694194690, guid: 6026fa89607a451409856f78c96dc0fc, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _WoodGrain:
-        m_Texture: {fileID: 2800000, guid: d42f7f3539f5e784187a4357210fb6ee, type: 3}
+        m_Texture: {fileID: 2800000, guid: 196052863a57db747b5b40926cb08d7d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -42,13 +42,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Grain_Power: 2.21
-    - _Grain_Size: 0.529
+    - _Grain_Power: 3.53
+    - _Grain_Size: 0.753
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Wood_Color_Noise: 6.28
+    - _Wood_Color_Power: 0.4
     m_Colors:
-    - _Base_Color: {r: 1, g: 0.85619795, b: 0.495283, a: 1}
-    - _Grain_Color: {r: 1, g: 0.7150838, b: 0, a: 1}
+    - _Base_Color: {r: 0.347, g: 0.20934713, b: 0.034413222, a: 1}
+    - _Grain_Color: {r: 0.213, g: 0.118632905, b: 0, a: 1}
+    - _Secondery_Color: {r: 0.241, g: 0.14459999, b: 0.02409999, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7147791351636902395

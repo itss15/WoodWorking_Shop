@@ -42,16 +42,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Grain_Power: 1.23
-    - _Grain_Size: 0.541
+    - _Grain_Power: 0.37
+    - _Grain_Size: 0.59
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Wood_Color_Noise: 5
-    - _Wood_Color_Power: 1
+    - _Wood_Color_Noise: 8.94
+    - _Wood_Color_Power: 0.3
     m_Colors:
     - _Base_Color: {r: 0.078, g: 0.04344304, b: 0, a: 1}
     - _Grain_Color: {r: 0.206, g: 0.09234483, b: 0, a: 1}
-    - _Secondery_Color: {r: 0.4811321, g: 0.43857908, b: 0.19744566, a: 1}
+    - _Secondery_Color: {r: 0.135, g: 0.074250005, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7147791351636902395
