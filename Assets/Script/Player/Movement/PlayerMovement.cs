@@ -40,11 +40,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Movement();
         Sprint();
         GroundCheck();
         Jump();
         Look();
+    }
+
+    private void FixedUpdate()
+    {
+        Movement();
     }
 
     void Movement()
@@ -53,12 +57,12 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 dir = transform.TransformDirection(input);
 
-        rb.MovePosition(rb.position + dir * (Speed * SpeedMultiplier) * Time.deltaTime);
+        rb.MovePosition(rb.position + (dir * (Speed * SpeedMultiplier) * Time.deltaTime));
     }
 
     void Sprint()
     {
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl) && GetComponent<Grab>().GrabbedPlank == null)
         {
             SpeedMultiplier = SprintMultiplier;
         }
@@ -102,7 +106,13 @@ public class PlayerMovement : MonoBehaviour
         mouseXRotation -= mouseY;
         mouseXRotation = Mathf.Clamp(mouseXRotation, -90f, 90f);
 
-        CameraTransform.localRotation = Quaternion.Euler(mouseXRotation, 0, 0);
+        if (GetComponent<Grab>().GrabbedPlank == null)
+        {
+            CameraTransform.localRotation = Quaternion.Euler(mouseXRotation, 0, 0);
+        }else
+        {
+            CameraTransform.localRotation = Quaternion.Euler(15, 0, 0);
+        }
 
         transform.Rotate(Vector3.up * mouseX);
     }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 enum EPlankType {
@@ -10,12 +11,12 @@ enum EPlankType {
 
 enum EPlankSize
 {
+    S1x1,
+    S1x2,
+    S2x2,
+    S2x3,
     S3x3,
-    S3x5,
-    S5x5,
-    S5x7,
-    S8x8,
-    S10x10
+    S4x5
 }
 public class Plank : MonoBehaviour
 {
@@ -30,25 +31,26 @@ public class Plank : MonoBehaviour
     [SerializeField] EPlankType plankType;
     [SerializeField] EPlankSize plankSize;
     public bool IsGrabbed = false;
+    public bool IsClamped = false;
 
     private void Start()
     {
         switch (plankSize)
         {
+            case EPlankSize.S1x1:
+                PlankModel.localScale = new Vector3(1, thickness, 1); width = 1; length = 1; break;
+            case EPlankSize.S1x2:
+                PlankModel.localScale = new Vector3(1, thickness, 2); width = 1; length = 2; break;
+            case EPlankSize.S2x2:
+                PlankModel.localScale = new Vector3(2, thickness, 2); width = 2; length = 2; break;
+            case EPlankSize.S2x3:
+                PlankModel.localScale = new Vector3(2, thickness, 3); width = 2; length = 3; break;
             case EPlankSize.S3x3:
-                PlankModel.localScale = new Vector3(3, thickness, 3); break;
-            case EPlankSize.S3x5:
-                PlankModel.localScale = new Vector3(3, thickness, 5); break;
-            case EPlankSize.S5x5:
-                PlankModel.localScale = new Vector3(5, thickness, 5); break;
-            case EPlankSize.S5x7:
-                PlankModel.localScale = new Vector3(5, thickness, 7); break;
-            case EPlankSize.S8x8:
-                PlankModel.localScale = new Vector3(8, thickness, 8); break;
-            case EPlankSize.S10x10:
-                PlankModel.localScale = new Vector3(10, thickness, 10); break;
+                PlankModel.localScale = new Vector3(3, thickness, 3); width = 3; length = 3; break;
+            case EPlankSize.S4x5:
+                PlankModel.localScale = new Vector3(4, thickness, 5); width = 4; length = 5; break;
             default:
-                PlankModel.localScale = new Vector3(3, thickness, 3); break;
+                PlankModel.localScale = new Vector3(1, thickness, 1); width = 1; length = 1; break;
         }
     }
 
@@ -56,6 +58,38 @@ public class Plank : MonoBehaviour
     private void Update()
     {
         UpdatePlank();
+    }
+
+    private void LateUpdate()
+    {
+        ClampedUpdate();
+    }
+
+    bool didSetPos = false;
+    Vector3 clampedPos;
+    Vector3 clampedRot;
+    void ClampedUpdate()
+    {
+        if (IsClamped)
+        {
+            if (!didSetPos)
+            {
+                clampedPos = transform.position;
+                clampedRot = transform.rotation.eulerAngles;
+                didSetPos = true;
+            }
+            else
+            {
+                transform.position = clampedPos;
+                transform.rotation = Quaternion.Euler(clampedRot);
+            }
+        }else
+        {
+            if (didSetPos)
+            {
+                didSetPos = false;
+            }
+        }
     }
 
     public void AnimateGrabPlank(Transform pos)
@@ -67,14 +101,21 @@ public class Plank : MonoBehaviour
                 GetComponent<Animator>().SetBool("IsGrabbed", true);
             }
 
-            while (IsGrabbed)
-            {
-                transform.position = pos.transform.position;
-            }
+            StartCoroutine(IGrabSetPos(pos));
         }
         else
         {
             GetComponent<Animator>().SetBool("IsGrabbed", false);
+        }
+    }
+
+    IEnumerator IGrabSetPos(Transform pos)
+    {
+        while (IsGrabbed)
+        {
+            transform.position = pos.transform.position;
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            yield return new WaitForSecondsRealtime(.001f);
         }
     }
 
@@ -102,7 +143,7 @@ public class Plank : MonoBehaviour
         Axis = Axis.ToLower();
         if (Axis == "length")
         {
-            if (Amount > 0 && Amount < length)
+            if (Amount > 0 && Amount < length && (length - Amount) >= 1)
             {
                 length -= Amount;
             }
@@ -110,7 +151,7 @@ public class Plank : MonoBehaviour
 
         if (Axis == "width")
         {
-            if (Amount > 0 && Amount < width)
+            if (Amount > 0 && Amount < width && (width - Amount) >= 1)
             {
                 width -= Amount;
             }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1004608546385840279}
   - component: {fileID: 983255763119702428}
   - component: {fileID: 3557387543504188755}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,9 +122,10 @@ GameObject:
   - component: {fileID: 3441623873476192863}
   - component: {fileID: 1633354012704983106}
   - component: {fileID: 2349804142241114036}
-  m_Layer: 0
+  - component: {fileID: 2362053422212566302}
+  m_Layer: 7
   m_Name: Plank
-  m_TagString: Untagged
+  m_TagString: Plank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,9 +168,10 @@ MonoBehaviour:
   width: 5
   length: 2
   thickness: 0.1
-  plankType: 0
-  plankSize: 0
+  plankType: 3
+  plankSize: 5
   IsGrabbed: 0
+  IsClamped: 0
 --- !u!54 &2349804142241114036
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -194,6 +196,28 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!95 &2362053422212566302
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050542016970154591}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: da187b8bc8bf5e7489f30d2a08bc6650, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
