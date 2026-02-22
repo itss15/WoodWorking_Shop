@@ -98,7 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NormalSaw
   IsMoving: 0
   IsGrabbed: 0
-  CutTime: 3
+  CuttPlankAmount: {x: 1.9, y: 1.9}
+  CuttTime: 16
+  IsCutting: 0
 --- !u!95 &1114857284328454334
 Animator:
   serializedVersion: 7

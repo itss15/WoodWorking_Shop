@@ -128,7 +128,8 @@ MonoBehaviour:
   GrabbedPlank: {fileID: 0}
   GrabbedNormalSaw: {fileID: 0}
   delay: 0.3
-  LastGrabbedPosition: {x: 0, y: 0, z: 0}
+  NormalSawLastGrabbedPosition: {x: 0, y: 0, z: 0}
+  NormalSawLastGrabbedRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &6948691451015686950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RayCastInteraction
   PlayerCamera: {fileID: 3004159775085655953}
   ClampTableInteractionKey: 101
+  CutPlankKey: 101
   GrabPlankDistance: 3
   PlankLayerMask:
     serializedVersion: 2
@@ -154,10 +156,11 @@ MonoBehaviour:
     m_Bits: 256
   Woodpos: {fileID: 0}
   IsClamping: 0
-  GrabANormalSawDistance: 2
+  GrabANormalSawDistance: 3
   ANormalSawLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  CutPlankDistance: 2
 --- !u!1 &3004159775085655953
 GameObject:
   m_ObjectHideFlags: 0

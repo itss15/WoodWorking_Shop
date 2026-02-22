@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Clamp Table
   - Plank
+  - QuestManager
   layers:
   - Default
   - TransparentFX
